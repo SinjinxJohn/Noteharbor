@@ -5,6 +5,7 @@ const userRouter = require('./Routes/userRouter');
 const cookieParser = require('cookie-parser');
 const { checkForToken } = require('./Middlewares/authHelper');
 const notesRouter = require('./Routes/noteRouter');
+const projectRouter = require('./Routes/projectRouter');
 
 
 
@@ -22,6 +23,7 @@ app.use(checkForToken());
 
 app.use('/',userRouter);
 app.use('/notes',notesRouter);
+app.use('/project',projectRouter);
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).json({ error: 'Something went wrong' });

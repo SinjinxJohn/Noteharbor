@@ -1,23 +1,13 @@
 const mongoose = require('mongoose');
-const db_link = "mongodb+srv://sinjinhotlinebling:hotlinebling@cluster0.v34jvsb.mongodb.net/?retryWrites=true&w=majority";
-
-mongoose.connect(db_link)
-    .then(function (db) {
-        console.log("db connected");
-    })
-    .catch(function (err) {
-        console.log(err);
-    })
-
 
 const noteSchema = mongoose.Schema({
-    title:{
-        type:String,
-        required:true,
+    title: {
+        type: String,
+        required: true
     },
-    description:{
-        type:String,
-        required:true,
+    description: {
+        type: String,
+        required: true
     },
     time: {
         start: {
@@ -47,21 +37,16 @@ const noteSchema = mongoose.Schema({
             }// End time set to 10:30 AM
         }
     },
-    due:{
-        type:Date,
-        required:true,
+    due: {
+        type: Date,
+        required: true
     },
-    status:{
-        type:String,
-        enum:['Not Completed','In progress','Completed'],
-        default:'Not Completed'
+    status: {
+        type: String,
+        enum: ['Not Completed', 'In progress', 'Completed'],
+        default: 'Not Completed'
     },
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'userModel'
-    }
+   
 });
 
-const notesModel = mongoose.model('NotesModel',noteSchema);
-module.exports = notesModel;
-// module.export = noteSchema;
+module.exports = noteSchema;
